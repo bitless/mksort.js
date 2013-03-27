@@ -10,7 +10,7 @@ mksort = {};
 	// from James Coglan/Jeff Atwood's answers at
 	// http://stackoverflow.com/questions/5223/length-of-javascript-object-ie-associative-array
 	var obLen = function(obj) {
-		var size = 0, key;
+		var size = 0, key = 0;
 		for (key in obj) {
 			if (obj.hasOwnProperty(key))
 				size++;
@@ -22,7 +22,7 @@ mksort = {};
 	// else var obIx = fucntion(obj, ix){ return Object.keys(obj)[ix]; } or
 	// whatever
 	var obIx = function(obj, ix) {
-		var size = 0, key;
+		var size = 0, key = 0;
 		for (key in obj) {
 			if (obj.hasOwnProperty(key)) {
 				if (size == ix)
