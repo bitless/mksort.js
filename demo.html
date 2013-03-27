@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="description" content="Sorting an array of objects on any keys ascending & descending (SQL style)" />
+<meta charset=utf-8 />
+<title>Multi key object array sorting, a la SQL order by</title>
+<style type="text/css">
+	pre {
+	  font-family:Menlo, Monaco, Terminal, monospace;
+	  font-size:10px;
+	  padding:8px;
+	  background-color:#eee;
+	  border: 1px dotted;
+	  overflow:auto;
+	  
+	}
+</style>
+
+<script>
+
+// extended from http://stackoverflow.com/questions/957537/how-can-i-print-a-javascript-object
+var print = function(obj, delp, delo, ind){
+    delp = delp!=null ? delp : "\t"; // property delimeter
+    delo = delo!=null ? delo : "\n"; // object delimeter
+    ind = ind!=null ? ind : " "; // indent
+    var str='';
+  
+    for(var prop in obj){
+        if(typeof obj[prop] == 'string' || typeof obj[prop] == 'number'){
+            str += ind + prop + ': ' + obj[prop] + '; ' + delp;
+        }else{
+            str += ind + prop + ': {'+ delp + print(obj[prop],delp,delo,ind+ind) + ind + '}' + delo;
+        }
+    }
+    return str;
+}
+
+// sample object for sorting
+var obja = [
+  {USER:"bob",	SCORE:2000,	TIME:32,	AGE:16,	COUNTRY:"US"},
+  {USER:"jane",	SCORE:4000,	TIME:35,	AGE:16,	COUNTRY:"DE"},
+  {USER:"tim",	SCORE:1000,	TIME:30,	AGE:17,	COUNTRY:"UK"},
+  {USER:"mary",	SCORE:1500,	TIME:31,	AGE:19,	COUNTRY:"PL"},
+  {USER:"joe",	SCORE:2500,	TIME:33,	AGE:18,	COUNTRY:"US"},
+  {USER:"sally",	SCORE:2000,	TIME:30,	AGE:16,	COUNTRY:"CA"},
+  {USER:"yuri",	SCORE:3000,	TIME:34,	AGE:19,	COUNTRY:"RU"},
+  {USER:"anita",	SCORE:2500,	TIME:32,	AGE:17,	COUNTRY:"LV"},
+  {USER:"mark",	SCORE:2000,	TIME:30,	AGE:18,	COUNTRY:"DE"},
+  {USER:"amy",	SCORE:1500,	TIME:29,	AGE:19,	COUNTRY:"UK"}
+];
+
+// sample sort parameters
+var sorto = {
+  SCORE:"desc",TIME:"asc", AGE:"asc"
+}; 
+
+function doSortDemo(){
+
+	console.log("~~~~ HI DERE ~~~~");
+	
+	console.log(print(obja));
+	document.write("<pre><b>BEFORE:</b>\n"+print(obja)+"</pre>");
+
+	document.write("<pre><b>SORTO</b>:\n"+print(sorto)+"</pre>");
+	
+	
+	console.log("~~~~");
+	
+	mksort.sort(obja, sorto);
+	
+	console.log(print(obja));
+	document.write("<pre><b>AFTER:</b>\n"+print(obja)+"</pre>");
+
+}
+
+</script>
+</head>
+<body>
+  
+  <h3>Multi Key Sort Demo</h3>
+  
+  <script src="mksort.min.js" onload="doSortDemo()"></script>
+  
+</body>
+</html>
