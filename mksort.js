@@ -37,9 +37,15 @@ mksort = {};
 		d = d !== null ? d : 1;
 		// a = a.toLowerCase(); // this breaks numbers
 		// b = b.toLowerCase();
+		a = isNum(a) ? a*1 : a.toLowerCase(); // restore numbers
+		b = isNum(b) ? b*1 : b.toLowerCase();
 		if (a == b)
 			return 0;
 		return a > b ? 1 * d : -1 * d;
+	};
+	
+	var isNum = function(v){
+		return (!isNaN(parseFloat(v)) && isFinite(v));	
 	};
 
 	/**
